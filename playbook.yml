@@ -10,9 +10,9 @@
     shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.3/g' /home/dockeruser/AsadExercise/nexus-blobstore-google-cloud/Dockerfile_bkp    
     #- name: Log into DockerHub
     #docker_login:
-    #  username: asadullahkhan
-    #  password: impossible123
-    #  email: niks_khan1571@yahoo.com
+    #  username: 
+    #  password: 
+    #  email:
   - name: Build Docker image from Dockerfile
     docker_image:
       name: asadullahkhan/custom-nexus-blobstore-gc:v2
