@@ -8,3 +8,21 @@
       replace: "sonatype/nexus3.5.6.7"
   - name: replace in sql files
     shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.3/g' /home/dockeruser/AsadExercise/nexus-blobstore-google-cloud/Dockerfile_bkp    
+    #- name: Log into DockerHub
+    #docker_login:
+    #  username: asadullahkhan
+    #  password: impossible123
+    #  email: niks_khan1571@yahoo.com
+  - name: Build Docker image from Dockerfile
+    docker_image:
+      name: asadullahkhan/custom-nexus-blobstore-gc:v2
+      path: .
+      state: build
+      #- name: Tag and push to docker hub
+      #docker_image:
+      #name: asadullahkhan/custom-nexus-blobstore-gc
+      #repository: asadullahkhan/custom-nexus-blobstore-gc
+      #tag: v2
+      #push: no
+  - name: pusing image thorugh command 
+    shell: docker push asadullahkhan/custom-nexus-blobstore-gc:v2    
