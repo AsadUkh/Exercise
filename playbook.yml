@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Ansible replace string example
+    replace:
+      path: /home/dockeruser/AsadExercise/nexus-blobstore-google-cloud/Dockerfile_bkp
+      regexp: 'sonatype/nexus3.*$'
+      replace: "sonatype/nexus3.5.6.7"
+  - name: replace in sql files
+    shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.3/g' /home/dockeruser/AsadExercise/nexus-blobstore-google-cloud/Dockerfile_bkp    
