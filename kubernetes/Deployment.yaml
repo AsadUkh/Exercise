@@ -15,7 +15,7 @@ spec:
       volumes:
       - name : pv-vol
         persistentVolumeClaim:
-          claimName: pvc  
+          claimName: nfs-pvc  
       containers:
       - name: container1
         image: asadullahkhan/custom-nexus-blobstore-gc:v1
