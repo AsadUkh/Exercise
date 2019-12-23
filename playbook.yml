@@ -3,11 +3,11 @@
   tasks:
   - name: REPLACE NEXUS IMAGE FOR FUTUTRE NEXUS RELEASES/VERSIONS
     replace:
-      path: Dockerfile_bkp
+      path: Dockerfile
       regexp: 'sonatype/nexus3.*$'
       replace: "sonatype/nexus3:3.19.1"
   - name: REPLACE PLUGIN_VERSION ON DOCKERFILE USING SED COMMAND
-    shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.2/g' Dockerfile_bkp    
+    shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.2/g' Dockerfile    
     #- name: Log into DockerHub
     #docker_login:
     #  username: 
