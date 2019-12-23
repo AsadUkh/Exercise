@@ -1,13 +1,13 @@
 ---
 - hosts: localhost
   tasks:
-  - name: Ansible replace string example
+  - name: REPLACE NEXUS IMAGE FOR FUTUTRE NEXUS RELEASES/VERSIONS
     replace:
-      path: /home/dockeruser/AsadExercise/nexus-blobstore-google-cloud/Dockerfile_bkp
+      path: Dockerfile_bkp
       regexp: 'sonatype/nexus3.*$'
-      replace: "sonatype/nexus3.5.6.7"
-  - name: replace in sql files
-    shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.3/g' /home/dockeruser/AsadExercise/nexus-blobstore-google-cloud/Dockerfile_bkp    
+      replace: "sonatype/nexus3:3.19.1"
+  - name: REPLACE PLUGIN_VERSION ON DOCKERFILE USING SED COMMAND
+    shell: sed -i 's/PLUGIN_VERSION=.*$/PLUGIN_VERSION=0.9.2/g' Dockerfile_bkp    
     #- name: Log into DockerHub
     #docker_login:
     #  username: 
@@ -24,5 +24,30 @@
       #repository: asadullahkhan/custom-nexus-blobstore-gc
       #tag: v2
       #push: no
+      
+
   - name: pusing image thorugh command 
-    shell: docker push asadullahkhan/custom-nexus-blobstore-gc:v2    
+    shell: docker push asadullahkhan/custom-nexus-blobstore-gc:v2
+
+
+  - name: Create a Deployment by reading the definition from a local file
+    k8s:
+      state: present
+      namespace: default
+      src: kubernetes/Deployment.yaml
+  - name: Create a Service object by reading the definition from a file
+    k8s:
+      state: present
+      namespace: default
+      src: kubernetes/Service.yaml
+  - name: Create a Persistent VOlumne by reading the definition from a file
+    k8s:
+      state: present
+      namespace: default
+      src: kubernetes/PersistentVolume.yaml
+  - name: Create a Persistent Volume Claim by reading the definition from a file
+    k8s:
+      state: present
+      namespace: default
+      src: kubernetes/PersistentVolumeClaim.yaml    
+    
